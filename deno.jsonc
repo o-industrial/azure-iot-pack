@@ -63,7 +63,7 @@
     "jsr:@o-industrial/common@0.0.463/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
 
-    "jsr:@o-industrial/common@0.0.463/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
+    "jsr:@o-industrial/common@0.0.463/packs/oi-core": "../oi-core-pack/src/.pack.ts",
 
     "jsr:@o-industrial/common@0.0.463/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts"
