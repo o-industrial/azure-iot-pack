@@ -1,6 +1,8 @@
 import {
   AccessToken,
   EaCWarmQueryAsCode,
+  KustoResponseDataSet,
+  loadKustoClient,
   TokenCredential,
   WarmQuery,
   WarmQueryModuleBuilder,

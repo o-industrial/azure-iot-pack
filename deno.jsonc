@@ -2,7 +2,7 @@
   "name": "@o-industrial/azure-iot-pack",
   "version": "0.0.0",
   "exports": {
-    ".": "./.pack.ts"
+    ".": "./src/.pack.ts"
   },
   "license": "MIT",
   "tasks": {
@@ -38,7 +38,7 @@
   "unstable": ["kv"],
   "lock": false,
   "imports": {
-    "jsr:jsr:@o-industrial/common@0.0.463/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/atomic/templates": "../open-industrial-reference-architecture/atomic/templates/.exports.ts",
@@ -60,7 +60,7 @@
     "jsr:@o-industrial/common@0.0.463/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/warmQueries": "../open-industrial-reference-architecture/src/fluent/warmQueries/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
     "jsr:@o-industrial/common@0.0.463/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
 
     "jsr:@o-industrial/common@0.0.463/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
