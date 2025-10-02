@@ -1,0 +1,71 @@
+{
+  "name": "@o-industrial/azure-iot-pack",
+  "version": "0.0.0",
+  "exports": {
+    ".": "./.pack.ts"
+  },
+  "license": "MIT",
+  "tasks": {
+    "build": "deno task build:fmt && deno task build:lint && deno task publish:check && deno task test",
+    "build:fmt": "deno fmt",
+    "build:lint": "deno lint",
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "deploy": "npx rimraf cov && deno task build && ftm git",
+    "publish:check": "deno publish --dry-run --allow-dirty",
+    "test": "npx rimraf cov && deno test -A ./tests/tests.ts --coverage=cov",
+    "version": "deno run -A jsr:@fathym/common@0.2.267/build/version"
+  },
+  "exclude": ["**/_eac-runtime/*", "!src/**/.exports.ts", "!mod.ts"],
+  "lint": {
+    "include": ["apps/", "configs/", "src/", "tests/"],
+    "exclude": [],
+    "rules": {
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
+      "exclude": []
+    }
+  },
+  "fmt": {
+    "include": ["apps/", "configs/", "src/", "tests/"],
+    "exclude": [],
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "proseWrap": "preserve",
+    "semiColons": true,
+    "singleQuote": true,
+    "useTabs": false
+  },
+  "unstable": ["kv"],
+  "lock": false,
+  "imports": {
+    "jsr:jsr:@o-industrial/common@0.0.463/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/atomic/templates": "../open-industrial-reference-architecture/atomic/templates/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/atomic/utils": "../open-industrial-reference-architecture/atomic/utils/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
+
+    "jsr:@o-industrial/common@0.0.463/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/secrets": "../open-industrial-reference-architecture/src/secrets/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/sop": "../open-industrial-reference-architecture/src/sop/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/utils": "../open-industrial-reference-architecture/src/utils/.exports.ts",
+
+    "jsr:@o-industrial/common@0.0.463/flow": "../open-industrial-reference-architecture/src/flow/.exports.ts",
+
+    "jsr:@o-industrial/common@0.0.463/fluent": "../open-industrial-reference-architecture/src/fluent/_/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/packs": "../open-industrial-reference-architecture/src/fluent/packs/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/warmQueries": "../open-industrial-reference-architecture/src/fluent/warmQueries/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
+
+    "jsr:@o-industrial/common@0.0.463/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
+
+    "jsr:@o-industrial/common@0.0.463/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
+    "jsr:@o-industrial/common@0.0.463/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts"
+  }
+}
