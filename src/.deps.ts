@@ -1,9 +1,9 @@
 export {
-  type EaCSharedSimulatorDetails,
-  type EaCSimulatorAsCode,
+  type EaCAzureDockerSimulatorDetails,
   type EaCAzureIoTHubDataConnectionDetails,
   type EaCDataConnectionAsCode,
-  type EaCAzureDockerSimulatorDetails,
+  type EaCSharedSimulatorDetails,
+  type EaCSimulatorAsCode,
   isEaCAzureIoTHubDataConnectionDetails,
 } from 'jsr:@o-industrial/common@0.0.463/eac';
 export {
@@ -15,10 +15,7 @@ export {
   Simulator,
   SimulatorModuleBuilder,
 } from 'jsr:@o-industrial/common@0.0.463/fluent/simulators';
-export {
-  Step,
-  StepModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.463/fluent/steps';
+export { Step, StepModuleBuilder } from 'jsr:@o-industrial/common@0.0.463/fluent/steps';
 export {
   WarmQuery,
   WarmQueryModuleBuilder,

@@ -22,7 +22,7 @@ export type AzureDataExplorerOutput = KustoResponseDataSet;
  * using details embedded in the WarmQuery's AsCode metadata.
  */
 export function AzureDataExplorerWarmQuery(
-  lookup: string
+  lookup: string,
 ): WarmQueryModuleBuilder<
   EaCWarmQueryAsCode,
   AzureDataExplorerOutput,
@@ -54,7 +54,7 @@ export function AzureDataExplorerWarmQuery(
             const { AccessToken: newToken } = await ctx.Steps.ResolveCredential(
               {
                 Method: 'kusto',
-              }
+              },
             );
 
             cachedToken = newToken;
@@ -75,7 +75,7 @@ export function AzureDataExplorerWarmQuery(
 
       if (typeof rawQuery !== 'string' || !rawQuery.trim().length) {
         throw new Error(
-          `Warm query \"${lookup}\" is missing query text. Save a query body before invoking the API.`
+          `Warm query \"${lookup}\" is missing query text. Save a query body before invoking the API.`,
         );
       }
 
@@ -90,9 +90,9 @@ export function AzureDataExplorerWarmQuery(
 
       return result;
     }) as unknown as WarmQueryModuleBuilder<
-    EaCWarmQueryAsCode,
-    AzureDataExplorerOutput,
-    void,
-    void
-  >;
+      EaCWarmQueryAsCode,
+      AzureDataExplorerOutput,
+      void,
+      void
+    >;
 }

@@ -1,10 +1,4 @@
-import {
-  type AccessToken,
-  IotHubClient,
-  Step,
-  StepModuleBuilder,
-  z,
-} from '../../.deps.ts';
+import { type AccessToken, IotHubClient, Step, StepModuleBuilder, z } from '../../.deps.ts';
 import { AzureResolveCredentialStep } from '../resolve-credential/AzureResolveCredentialStep.ts';
 import { AzureResolveCredentialInputSchema } from '../resolve-credential/AzureResolveCredentialInput.ts';
 
@@ -48,7 +42,7 @@ type TStepBuilder = StepModuleBuilder<
 
 export const AzureResolveIoTHubConnectionStringStep: TStepBuilder = Step(
   'Resolve Azure IoT Hub Connection String',
-  'Retrieves the connection string for a named key on the derived IoT Hub'
+  'Retrieves the connection string for a named key on the derived IoT Hub',
 )
   .Input(AzureResolveIoTHubConnectionStringInputSchema)
   .Output(AzureResolveIoTHubConnectionStringOutputSchema)
@@ -60,7 +54,7 @@ export const AzureResolveIoTHubConnectionStringStep: TStepBuilder = Step(
     const { SubscriptionID, CredentialStrategy } = ctx.Options!;
 
     const { AccessToken } = await ctx.Steps!.ResolveCredential(
-      CredentialStrategy
+      CredentialStrategy,
     );
 
     const cred = {
@@ -88,10 +82,11 @@ export const AzureResolveIoTHubConnectionStringStep: TStepBuilder = Step(
     const keys = await IotClient.iotHubResource.getKeysForKeyName(
       ResourceGroupName,
       IoTHubName,
-      KeyName ?? 'device'
+      KeyName ?? 'device',
     );
 
-    const connStr = `HostName=${IoTHubName}.azure-devices.net;SharedAccessKeyName=${KeyName};SharedAccessKey=${keys.secondaryKey}`;
+    const connStr =
+      `HostName=${IoTHubName}.azure-devices.net;SharedAccessKeyName=${KeyName};SharedAccessKey=${keys.secondaryKey}`;
 
     return {
       ConnectionString: connStr,

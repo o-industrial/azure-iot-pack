@@ -21,7 +21,7 @@ type TStepBuilder = StepModuleBuilder<
 
 export const AzureResolveCredentialStep: TStepBuilder = Step(
   'Resolve Azure Credential',
-  'Resolves an Azure access token using various auth strategies'
+  'Resolves an Azure access token using various auth strategies',
 )
   .Input(AzureResolveCredentialInputSchema)
   .Output(AzureResolveCredentialOutputSchema)
@@ -45,13 +45,13 @@ export const AzureResolveCredentialStep: TStepBuilder = Step(
         const cred = new ClientSecretCredential(
           TenantId,
           ClientId,
-          ClientSecret
+          ClientSecret,
         );
 
         return Promise.resolve({
           resolveToken: async () => {
             const raw = await cred.getToken(
-              'https://management.azure.com/.default'
+              'https://management.azure.com/.default',
             );
             if (!raw?.token) {
               throw new Error('Failed to get token via ClientSecret.');
@@ -70,9 +70,7 @@ export const AzureResolveCredentialStep: TStepBuilder = Step(
           auth: {
             clientId: ClientId,
             clientSecret: ClientSecret,
-            authority: `https://login.microsoftonline.com/${
-              TenantId ?? 'common'
-            }`,
+            authority: `https://login.microsoftonline.com/${TenantId ?? 'common'}`,
           },
         });
 
@@ -95,7 +93,7 @@ export const AzureResolveCredentialStep: TStepBuilder = Step(
             const realCred = new DefaultAzureCredential(); // create it INSIDE to avoid reuse
 
             const tokenResponse = await realCred.getToken(
-              'https://fobd1-data-explorer.westus2.kusto.windows.net/.default'
+              'https://fobd1-data-explorer.westus2.kusto.windows.net/.default',
             );
 
             if (!tokenResponse?.token) {

@@ -54,7 +54,7 @@ type TStepBuilder = StepModuleBuilder<
 
 export const AzureContainerAppJobStatsStep: TStepBuilder = Step(
   'Azure Container App Job Stats',
-  'Fetches runtime metadata and status for a deployed Container App'
+  'Fetches runtime metadata and status for a deployed Container App',
 )
   .Input(AzureContainerAppJobStatsInputSchema)
   .Output(AzureContainerAppJobStatsOutputSchema)
@@ -67,10 +67,11 @@ export const AzureContainerAppJobStatsStep: TStepBuilder = Step(
     const { SubscriptionID, CredentialStrategy } = ctx.Options!;
 
     const { AccessToken } = await ctx.Steps!.ResolveCredential(
-      CredentialStrategy
+      CredentialStrategy,
     );
 
-    const url = `https://management.azure.com/subscriptions/${SubscriptionID}/resourceGroups/${ResourceGroupName}/providers/Microsoft.App/containerApps/${AppName}?api-version=2023-05-01`;
+    const url =
+      `https://management.azure.com/subscriptions/${SubscriptionID}/resourceGroups/${ResourceGroupName}/providers/Microsoft.App/containerApps/${AppName}?api-version=2023-05-01`;
 
     const res = await fetch(url, {
       method: 'GET',
@@ -94,15 +95,17 @@ export const AzureContainerAppJobStatsStep: TStepBuilder = Step(
 
     const json = await res.json();
     const revisionStatus = json?.properties?.provisioningState ?? 'Unknown';
-    const lastUpdated =
-      json?.systemData?.lastModifiedAt ?? new Date().toISOString();
+    const lastUpdated = json?.systemData?.lastModifiedAt ?? new Date().toISOString();
 
     const last = new Date(lastUpdated).getTime();
     const now = Date.now();
     const ageMinutes = (now - last) / 60_000;
 
-    const health: 'Healthy' | 'Stale' | 'Unreachable' =
-      ageMinutes > 10 ? 'Unreachable' : ageMinutes > 2 ? 'Stale' : 'Healthy';
+    const health: 'Healthy' | 'Stale' | 'Unreachable' = ageMinutes > 10
+      ? 'Unreachable'
+      : ageMinutes > 2
+      ? 'Stale'
+      : 'Healthy';
 
     return {
       HealthStatus: health,
@@ -112,8 +115,7 @@ export const AzureContainerAppJobStatsStep: TStepBuilder = Step(
         Location: json.location,
         Revision: revisionStatus,
         Fqdn: json.properties?.configuration?.ingress?.fqdn,
-        ActiveRevisionsMode:
-          json.properties?.configuration?.activeRevisionsMode,
+        ActiveRevisionsMode: json.properties?.configuration?.activeRevisionsMode,
         LastModifiedBy: json.systemData?.lastModifiedBy,
       },
     };

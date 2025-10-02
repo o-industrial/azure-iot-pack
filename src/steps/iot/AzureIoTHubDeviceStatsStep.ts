@@ -1,10 +1,4 @@
-import {
-  AccessToken,
-  IotHubClient,
-  IoTRegistry,
-  Step,
-  StepModuleBuilder,
-} from '../../.deps.ts';
+import { AccessToken, IotHubClient, IoTRegistry, Step, StepModuleBuilder } from '../../.deps.ts';
 
 import { AzureResolveCredentialStep } from '../resolve-credential/AzureResolveCredentialStep.ts';
 
@@ -30,7 +24,7 @@ type TStepBuilder = StepModuleBuilder<
 
 export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
   'Azure IoT Hub Device Stats',
-  'Fetches device connection stats and simulated telemetry from Azure IoT Hub'
+  'Fetches device connection stats and simulated telemetry from Azure IoT Hub',
 )
   .Input(AzureIoTHubDeviceStatsInputSchema)
   .Output(AzureIoTHubDeviceStatsOutputSchema)
@@ -39,13 +33,12 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
     ResolveCredential: AzureResolveCredentialStep.Build(),
   }))
   .Services(async (input, ctx) => {
-    const { SubscriptionID, ResourceGroupName, CredentialStrategy } =
-      ctx.Options!;
+    const { SubscriptionID, ResourceGroupName, CredentialStrategy } = ctx.Options!;
 
     const { IoTHubName } = input;
 
     const { AccessToken } = await ctx.Steps!.ResolveCredential(
-      CredentialStrategy
+      CredentialStrategy,
     );
 
     const cred = {
@@ -61,11 +54,12 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
     const keys = await iotClient.iotHubResource.getKeysForKeyName(
       ResourceGroupName,
       IoTHubName,
-      'iothubowner'
+      'iothubowner',
     );
 
     const hostName = `${IoTHubName}.azure-devices.net`;
-    const connStr = `HostName=${hostName};SharedAccessKeyName=iothubowner;SharedAccessKey=${keys.secondaryKey}`;
+    const connStr =
+      `HostName=${hostName};SharedAccessKeyName=iothubowner;SharedAccessKey=${keys.secondaryKey}`;
 
     return {
       Registry: IoTRegistry.fromConnectionString(connStr),
@@ -109,12 +103,11 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
     const impulseRates = [6.3, 25.7, 90.1]; // Stub
 
     const msSinceLast = now.getTime() - lastReceived.getTime();
-    const health =
-      msSinceLast < 90_000
-        ? 'Healthy'
-        : msSinceLast < 10 * 60_000
-        ? 'Stale'
-        : 'Unreachable';
+    const health = msSinceLast < 90_000
+      ? 'Healthy'
+      : msSinceLast < 10 * 60_000
+      ? 'Stale'
+      : 'Unreachable';
 
     // Extract identity info and keys (if symmetric)
     type IdentityAuth = {
@@ -128,8 +121,7 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
       connectionState?: string;
       authentication?: IdentityAuth;
     };
-    const body: IdentityBody =
-      (identity as { responseBody?: IdentityBody })?.responseBody ?? {};
+    const body: IdentityBody = (identity as { responseBody?: IdentityBody })?.responseBody ?? {};
     const connectionState: string = body?.connectionState ?? '';
     const auth: IdentityAuth = body?.authentication ?? {};
     const symmetricKey = auth?.symmetricKey ?? {};
@@ -149,7 +141,7 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
     // Helper to create a SAS token for device scope
     async function createDeviceSas(
       keyB64: string,
-      ttlSeconds = 3600
+      ttlSeconds = 3600,
     ): Promise<string> {
       const resourceUri = `${HostName}/devices/${DeviceID}`.toLowerCase();
       const encodedUri = encodeURIComponent(resourceUri);
@@ -161,7 +153,7 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
         keyBytes,
         { name: 'HMAC', hash: 'SHA-256' },
         false,
-        ['sign']
+        ['sign'],
       );
       const toSign = new TextEncoder().encode(`${encodedUri}\n${expiry}`);
       const sigBuf = await crypto.subtle.sign('HMAC', cryptoKey, toSign);
@@ -171,9 +163,7 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
       return `SharedAccessSignature sr=${encodedUri}&sig=${sigEnc}&se=${expiry}`;
     }
 
-    const deviceSasPrimary = devicePrimaryKey
-      ? await createDeviceSas(devicePrimaryKey)
-      : undefined;
+    const deviceSasPrimary = devicePrimaryKey ? await createDeviceSas(devicePrimaryKey) : undefined;
     const deviceSasSecondary = deviceSecondaryKey
       ? await createDeviceSas(deviceSecondaryKey)
       : undefined;
@@ -184,34 +174,21 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
       HostName,
       DeviceID,
       Status: connectionState,
-      AuthType:
-        devicePrimaryKey || deviceSecondaryKey
-          ? 'symmetricKey'
-          : x509?.primaryThumbprint || x509?.secondaryThumbprint
-          ? 'x509'
-          : 'unknown',
-      ...(x509?.primaryThumbprint
-        ? { X509PrimaryThumbprint: x509.primaryThumbprint }
-        : {}),
-      ...(x509?.secondaryThumbprint
-        ? { X509SecondaryThumbprint: x509.secondaryThumbprint }
-        : {}),
+      AuthType: devicePrimaryKey || deviceSecondaryKey
+        ? 'symmetricKey'
+        : x509?.primaryThumbprint || x509?.secondaryThumbprint
+        ? 'x509'
+        : 'unknown',
+      ...(x509?.primaryThumbprint ? { X509PrimaryThumbprint: x509.primaryThumbprint } : {}),
+      ...(x509?.secondaryThumbprint ? { X509SecondaryThumbprint: x509.secondaryThumbprint } : {}),
 
       // Device connection strings (if symmetric)
-      ...(deviceConnStrPrimary
-        ? { 'Device ConnStr (primary)': deviceConnStrPrimary }
-        : {}),
-      ...(deviceConnStrSecondary
-        ? { 'Device ConnStr (secondary)': deviceConnStrSecondary }
-        : {}),
+      ...(deviceConnStrPrimary ? { 'Device ConnStr (primary)': deviceConnStrPrimary } : {}),
+      ...(deviceConnStrSecondary ? { 'Device ConnStr (secondary)': deviceConnStrSecondary } : {}),
 
       // Device SAS tokens (1h)
-      ...(deviceSasPrimary
-        ? { 'Device SAS (primary, 1h)': deviceSasPrimary }
-        : {}),
-      ...(deviceSasSecondary
-        ? { 'Device SAS (secondary, 1h)': deviceSasSecondary }
-        : {}),
+      ...(deviceSasPrimary ? { 'Device SAS (primary, 1h)': deviceSasPrimary } : {}),
+      ...(deviceSasSecondary ? { 'Device SAS (secondary, 1h)': deviceSasSecondary } : {}),
 
       // MQTT details
       'MQTT Host': HostName,
@@ -235,7 +212,8 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
         : {}),
 
       // HTTP details
-      'HTTP Endpoint': `https://${HostName}/devices/${DeviceID}/messages/events?api-version=2020-09-30`,
+      'HTTP Endpoint':
+        `https://${HostName}/devices/${DeviceID}/messages/events?api-version=2020-09-30`,
       ...(deviceSasPrimary
         ? { 'HTTP Auth (Authorization)': deviceSasPrimary }
         : x509?.primaryThumbprint

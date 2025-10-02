@@ -12,7 +12,7 @@ import { AzureResolveCredentialInput } from '../steps/resolve-credential/AzureRe
 import { WorkspaceEnsureAzureResourceGroupStep } from '../steps/calz/WorkspaceEnsureAzureResourceGroupStep.ts';
 
 export function SharedSimulator(
-  lookup: string
+  lookup: string,
 ): SimulatorModuleBuilder<
   EaCSimulatorAsCode<EaCSharedSimulatorDetails>,
   void,
@@ -28,7 +28,7 @@ export function SharedSimulator(
   >(lookup)
     .DeployType(z.void())
     .StatsType(
-      z.object({ RoutesCount: z.number(), LastSeenUTC: z.string().optional() })
+      z.object({ RoutesCount: z.number(), LastSeenUTC: z.string().optional() }),
     )
     .Steps(async ({ Secrets }) => {
       const subId = (await Secrets.Get('AZURE_IOT_SUBSCRIPTION_ID'))!;
@@ -43,11 +43,10 @@ export function SharedSimulator(
           CredentialStrategy: credStrat,
           SubscriptionID: subId,
         }),
-        ResolveIoTHubConnectionString:
-          AzureResolveIoTHubConnectionStringStep.Build({
-            SubscriptionID: subId,
-            CredentialStrategy: credStrat,
-          }),
+        ResolveIoTHubConnectionString: AzureResolveIoTHubConnectionStringStep.Build({
+          SubscriptionID: subId,
+          CredentialStrategy: credStrat,
+        }),
       };
     })
     .Stats(({ EaC, Lookup }) => {
@@ -61,7 +60,7 @@ export function SharedSimulator(
         const { Source } = AsCode.Details!;
         const sourceConn = await Steps.ResolveIoTHubConnectionString({
           ResourceGroupName: await Secrets.GetRequired(
-            'AZURE_IOT_RESOURCE_GROUP'
+            'AZURE_IOT_RESOURCE_GROUP',
           ),
           KeyName: 'iothubowner',
         });
@@ -73,9 +72,11 @@ export function SharedSimulator(
           TargetDeviceID: string;
         }> = [];
 
-        for (const [dcLookup, dc] of Object.entries(
-          EaC.DataConnections ?? {}
-        )) {
+        for (
+          const [dcLookup, dc] of Object.entries(
+            EaC.DataConnections ?? {},
+          )
+        ) {
           const dcDetails = dc.Details ?? {};
           if (
             dc.SimulatorLookup === SimulatorLookup &&
@@ -83,14 +84,14 @@ export function SharedSimulator(
           ) {
             const targetConn = await Steps.ResolveIoTHubConnectionString({
               ResourceGroupName: await Secrets.GetRequired(
-                'AZURE_IOT_RESOURCE_GROUP'
+                'AZURE_IOT_RESOURCE_GROUP',
               ),
               KeyName: 'iothubowner',
             });
 
             const targetDeviceId = await shaHash(
               EaC.EnterpriseLookup!,
-              SimulatorLookup
+              SimulatorLookup,
             );
 
             subscribers.push({
@@ -120,11 +121,11 @@ export function SharedSimulator(
         // TODO(AI): call relay /admin/reload
 
         return;
-      }
+      },
     ) as unknown as SimulatorModuleBuilder<
-    EaCSimulatorAsCode<EaCSharedSimulatorDetails>,
-    void,
-    void,
-    { RoutesCount: number; LastSeenUTC?: string }
-  >;
+      EaCSimulatorAsCode<EaCSharedSimulatorDetails>,
+      void,
+      void,
+      { RoutesCount: number; LastSeenUTC?: string }
+    >;
 }
