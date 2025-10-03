@@ -66,7 +66,7 @@
     // "jsr:@o-industrial/common@0.0.470-hmis/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
     // "jsr:@o-industrial/common@0.0.470-hmis/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts",
 
-    // "jsr:@o-industrial/oi-core-pack@0.0.4-integration": "../oi-core-pack/src/.pack.ts"
+    // "jsr:@o-industrial/oi-core-pack@0.0.5-integration": "../oi-core-pack/src/.pack.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
