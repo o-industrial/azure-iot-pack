@@ -38,34 +38,20 @@
   "unstable": ["kv"],
   "lock": false,
   "imports": {
-    // "jsr:@o-industrial/common@0.0.473-integration/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.475-integration/utils/client": "../open-industrial-reference-architecture/src/utils/.exports.client.ts",
 
-    // "jsr:@o-industrial/common@0.0.473-integration/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/secrets": "../open-industrial-reference-architecture/src/secrets/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/sop": "../open-industrial-reference-architecture/src/sop/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/utils": "../open-industrial-reference-architecture/src/utils/.exports.ts",
-
-    // "jsr:@o-industrial/common@0.0.473-integration/flow": "../open-industrial-reference-architecture/src/flow/.exports.ts",
-
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent": "../open-industrial-reference-architecture/src/fluent/_/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/packs": "../open-industrial-reference-architecture/src/fluent/packs/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
-
-    // "jsr:@o-industrial/common@0.0.473-integration/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
-    // "jsr:@o-industrial/atomic@0/tailwind/preset": "../open-industrial-atomic/configs/tailwind/preset.ts",
-
-    // "jsr:@o-industrial/oi-core-pack@0.0.7": "../oi-core-pack/src/.pack.ts"
+    // "jsr:@o-industrial/oi-core-pack@0.0.10-integration/connections": "../oi-core-pack/src/capabilities/connection/.exports.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "npm:preact@10.20.1"
   }
 }
+
 
