@@ -3,11 +3,11 @@ import {
   AzureDataExplorerOutput,
   AzureDataExplorerOutputSchema,
   EaCWarmQueryAsCode,
-  loadKustoClient,
   TokenCredential,
   WarmQuery,
   WarmQueryModuleBuilder,
 } from '../.deps.ts';
+import { loadKustoClient } from 'jsr:@o-industrial/common@0.0.467-hmis/utils/kusto';
 import { AzureResolveCredentialStep } from '../steps/resolve-credential/AzureResolveCredentialStep.ts';
 
 //  z.infer<
