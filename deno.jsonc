@@ -38,34 +38,38 @@
   "unstable": ["kv"],
   "lock": false,
   "imports": {
-    "jsr:@o-industrial/common@0.0.463/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/atomic/templates": "../open-industrial-reference-architecture/atomic/templates/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/atomic/utils": "../open-industrial-reference-architecture/atomic/utils/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/atomic/templates": "../open-industrial-reference-architecture/atomic/templates/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/atomic/utils": "../open-industrial-reference-architecture/atomic/utils/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
 
-    "jsr:@o-industrial/common@0.0.463/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/secrets": "../open-industrial-reference-architecture/src/secrets/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/sop": "../open-industrial-reference-architecture/src/sop/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/utils": "../open-industrial-reference-architecture/src/utils/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/secrets": "../open-industrial-reference-architecture/src/secrets/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/sop": "../open-industrial-reference-architecture/src/sop/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/utils": "../open-industrial-reference-architecture/src/utils/.exports.ts",
 
-    "jsr:@o-industrial/common@0.0.463/flow": "../open-industrial-reference-architecture/src/flow/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/flow": "../open-industrial-reference-architecture/src/flow/.exports.ts",
 
-    "jsr:@o-industrial/common@0.0.463/fluent": "../open-industrial-reference-architecture/src/fluent/_/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/packs": "../open-industrial-reference-architecture/src/fluent/packs/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent": "../open-industrial-reference-architecture/src/fluent/_/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/packs": "../open-industrial-reference-architecture/src/fluent/packs/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
 
-    "jsr:@o-industrial/common@0.0.463/packs/oi-core": "../oi-core-pack/src/.pack.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.466-hmis/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts",
 
-    "jsr:@o-industrial/common@0.0.463/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
-    "jsr:@o-industrial/common@0.0.463/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts"
+    // "@o-industrial/oi-core-pack": "../oi-core-pack/src/.pack.ts"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:preact@10.20.1"
   }
 }

@@ -1,18 +1,15 @@
 import {
   AccessToken,
+  AzureDataExplorerOutput,
+  AzureDataExplorerOutputSchema,
   EaCWarmQueryAsCode,
-  KustoResponseDataSet,
   loadKustoClient,
   TokenCredential,
   WarmQuery,
   WarmQueryModuleBuilder,
-  z,
 } from '../.deps.ts';
 import { AzureResolveCredentialStep } from '../steps/resolve-credential/AzureResolveCredentialStep.ts';
 
-export const AzureDataExplorerOutputSchema: z.ZodAny = z.any();
-
-export type AzureDataExplorerOutput = KustoResponseDataSet;
 //  z.infer<
 //   typeof AzureDataExplorerOutputSchema
 // >;
