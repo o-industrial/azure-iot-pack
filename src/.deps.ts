@@ -5,29 +5,29 @@ export {
   type EaCSharedSimulatorDetails,
   type EaCSimulatorAsCode,
   isEaCAzureIoTHubDataConnectionDetails,
-} from 'jsr:@o-industrial/common@0.0.470-hmis/eac';
+} from 'jsr:@o-industrial/common@0.0.473-integration/eac';
 export {
   DataConnection,
   DataConnectionModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.470-hmis/fluent/connections';
+} from 'jsr:@o-industrial/common@0.0.473-integration/fluent/connections';
 export {
   Simulator,
   SimulatorModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.470-hmis/fluent/simulators';
-export { Step, StepModuleBuilder } from 'jsr:@o-industrial/common@0.0.470-hmis/fluent/steps';
+} from 'jsr:@o-industrial/common@0.0.473-integration/fluent/simulators';
+export { Step, StepModuleBuilder } from 'jsr:@o-industrial/common@0.0.473-integration/fluent/steps';
 export {
   WarmQuery,
   WarmQueryModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.470-hmis/fluent/warm-queries';
+} from 'jsr:@o-industrial/common@0.0.473-integration/fluent/warm-queries';
 
 export {
   type AzureDataExplorerOutput,
   AzureDataExplorerOutputSchema,
-} from 'jsr:@o-industrial/common@0.0.470-hmis/types';
+} from 'jsr:@o-industrial/common@0.0.473-integration/types';
 
-export { shaHash } from 'jsr:@o-industrial/common@0.0.470-hmis/utils';
+export { shaHash } from 'jsr:@o-industrial/common@0.0.473-integration/utils/client';
 
-export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.5-integration/connections';
+export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.7/connections';
 
 export type { Status } from 'jsr:@fathym/common@0.2.274';
 export { z } from 'jsr:@fathym/common@0.2.274/third-party/zod';
