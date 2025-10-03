@@ -38,11 +38,6 @@
   "unstable": ["kv"],
   "lock": false,
   "imports": {
-    // "jsr:@o-industrial/common@0.0.473-integration/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/atomic/templates": "../open-industrial-reference-architecture/atomic/templates/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/atomic/utils": "../open-industrial-reference-architecture/atomic/utils/.exports.ts",
     // "jsr:@o-industrial/common@0.0.473-integration/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
 
     // "jsr:@o-industrial/common@0.0.473-integration/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
@@ -64,7 +59,7 @@
     // "jsr:@o-industrial/common@0.0.473-integration/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
 
     // "jsr:@o-industrial/common@0.0.473-integration/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
-    // "jsr:@o-industrial/common@0.0.473-integration/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts",
+    // "jsr:@o-industrial/atomic@0/tailwind/preset": "../open-industrial-atomic/configs/tailwind/preset.ts",
 
     // "jsr:@o-industrial/oi-core-pack@0.0.7": "../oi-core-pack/src/.pack.ts"
   },
@@ -73,3 +68,4 @@
     "jsxImportSource": "npm:preact@10.20.1"
   }
 }
+
