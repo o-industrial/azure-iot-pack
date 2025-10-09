@@ -38,15 +38,15 @@
   "unstable": ["kv"],
   "lock": false,
   "imports": {
-    "jsr:@o-industrial/common@0.0.488-hmis/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
-    "jsr:@o-industrial/common@0.0.488-hmis/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
-    "jsr:@o-industrial/common@0.0.488-hmis/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
-    "jsr:@o-industrial/common@0.0.488-hmis/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
-    "jsr:@o-industrial/common@0.0.488-hmis/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
-    "jsr:@o-industrial/common@0.0.488-hmis/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
-    "jsr:@o-industrial/common@0.0.488-hmis/utils/client": "../open-industrial-reference-architecture/src/utils/.exports.client.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/fluent/warm-queries": "../open-industrial-reference-architecture/src/fluent/warm-queries/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
+    // "jsr:@o-industrial/common@0.0.488-hmis/utils/client": "../open-industrial-reference-architecture/src/utils/.exports.client.ts",
 
-    "jsr:@o-industrial/oi-core-pack@0.0.23/connections": "../oi-core-pack/src/capabilities/connection/.exports.ts"
+    // "jsr:@o-industrial/oi-core-pack@0.0.23/connections": "../oi-core-pack/src/capabilities/connection/.exports.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
