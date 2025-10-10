@@ -7,7 +7,7 @@ import {
   WarmQuery,
   WarmQueryModuleBuilder,
 } from '../.deps.ts';
-import { loadKustoClient } from 'jsr:@o-industrial/common@0.0.488-hmis/utils/kusto';
+import { loadKustoClient } from 'jsr:@o-industrial/common@0.0.493/utils/kusto';
 import { AzureResolveCredentialStep } from '../steps/resolve-credential/AzureResolveCredentialStep.ts';
 
 //  z.infer<
