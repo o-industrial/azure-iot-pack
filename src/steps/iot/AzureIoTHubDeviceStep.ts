@@ -11,6 +11,7 @@ import {
   AzureIoTHubDeviceOutput,
   AzureIoTHubDeviceOutputSchema,
 } from './AzureIoTHubDeviceOutput.ts';
+import { applyDevUserTag, withDevUserTag } from '../../devUser.ts';
 
 type TStepBuilder = StepModuleBuilder<
   AzureIoTHubDeviceInput,
@@ -21,7 +22,7 @@ type TStepBuilder = StepModuleBuilder<
 type DeviceDescription = {
   deviceId: string;
   capabilities: { iotEdge: boolean };
-  tags: { WorkspaceLookup: string; DataConnectionLookup?: string };
+  tags: Record<string, string>;
 };
 
 export const AzureIoTHubDeviceStep: TStepBuilder = Step(
@@ -69,7 +70,7 @@ export const AzureIoTHubDeviceStep: TStepBuilder = Step(
 
     await Promise.all(
       Object.entries(Devices).map(async ([id, def]) => {
-        const desiredTags: Record<string, string> = {
+        const baseTags: Record<string, string | undefined> = {
           WorkspaceLookup,
           DeviceName: def.DeviceName,
           DataConnectionLookup: def.DataConnectionLookup,
@@ -80,6 +81,11 @@ export const AzureIoTHubDeviceStep: TStepBuilder = Step(
         try {
           const twin = (await Registry.getTwin(id)).responseBody;
           const currentTags = twin.tags ?? {};
+          const desiredTags = applyDevUserTag(
+            baseTags,
+            currentTags,
+            true,
+          )!;
 
           const tagMismatch = Object.entries(desiredTags).some(
             ([k, v]) => currentTags[k] !== v,
@@ -92,6 +98,8 @@ export const AzureIoTHubDeviceStep: TStepBuilder = Step(
           if (!(err instanceof Error) || err.name !== 'DeviceNotFoundError') {
             throw err;
           }
+
+          const desiredTags = withDevUserTag(baseTags)!;
 
           const device: DeviceDescription = {
             deviceId: id,

@@ -4,6 +4,7 @@ import { AzureResolveCredentialStep } from '../resolve-credential/AzureResolveCr
 import { AzureResolveCredentialInputSchema } from '../resolve-credential/AzureResolveCredentialInput.ts';
 
 import { ResourceManagementClient } from 'npm:@azure/arm-resources@6.1.0';
+import { withDevUserTag } from '../../devUser.ts';
 
 // ---------- Input / Output ----------
 
@@ -95,9 +96,9 @@ export const WorkspaceEnsureAzureResourceGroupStep: TStepBuilder = Step(
 
     await ResourceClient.resourceGroups.createOrUpdate(ResourceGroupName, {
       location,
-      tags: {
+      tags: withDevUserTag({
         WorkspaceLookup,
-      },
+      }),
     });
 
     return { ResourceGroupName };

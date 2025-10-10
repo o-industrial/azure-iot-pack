@@ -4,6 +4,7 @@ import { AzureResolveCredentialStep } from '../resolve-credential/AzureResolveCr
 import { AzureResolveCredentialInputSchema } from '../resolve-credential/AzureResolveCredentialInput.ts';
 
 import { ContainerApp, ContainerAppsAPIClient } from 'npm:@azure/arm-appcontainers@2.2.0';
+import { applyDevUserTag } from '../../devUser.ts';
 
 // ---------- Input / Output ----------
 
@@ -120,7 +121,7 @@ export const AzureContainerAppStartStep: TStepBuilder = Step(
 
         const update: ContainerApp = {
           location: current.location,
-          tags: current.tags,
+          tags: applyDevUserTag(current.tags ?? undefined, current.tags ?? undefined, true),
           managedEnvironmentId: current.managedEnvironmentId,
           configuration: current.configuration,
           template: {

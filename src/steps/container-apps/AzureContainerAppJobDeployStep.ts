@@ -8,6 +8,7 @@ import {
   ContainerAppsAPIClient,
   ManagedEnvironment,
 } from 'npm:@azure/arm-appcontainers@2.2.0';
+import { withDevUserTag } from '../../devUser.ts';
 
 // ---------- Input / Output ----------
 
@@ -116,6 +117,8 @@ export const AzureContainerAppJobDeployStep: TStepBuilder = Step(
     const { SubscriptionID } = ctx.Options!;
     const { ContainerAppClient } = ctx.Services!;
     const location = 'westus2';
+    const environmentTags = withDevUserTag(AppEnvironmentTags);
+    const appTags = withDevUserTag(AppTags);
 
     // --- Ensure Managed Environment ---
     try {
@@ -138,7 +141,7 @@ export const AzureContainerAppJobDeployStep: TStepBuilder = Step(
                 workloadProfileType: 'Consumption',
               },
             ],
-            tags: AppEnvironmentTags,
+            tags: environmentTags,
             // properties: {
             //   // appLogsConfiguration: {
             //   //   // destination: 'log-analytics',
@@ -175,7 +178,7 @@ export const AzureContainerAppJobDeployStep: TStepBuilder = Step(
     // --- Deploy Container App ---
     const containerApp: ContainerApp = {
       location,
-      tags: AppTags,
+      tags: appTags,
       managedEnvironmentId:
         `/subscriptions/${SubscriptionID}/resourceGroups/${ResourceGroupName}/providers/Microsoft.App/managedEnvironments/${AppEnvironmentName}`,
       configuration: {
