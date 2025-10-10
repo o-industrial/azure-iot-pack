@@ -1,5 +1,12 @@
 // deno-lint-ignore-file no-explicit-any
-import { IoTRegistry, shaHash, Step, StepModuleBuilder } from '../../.deps.ts';
+import {
+  applyDevUserTag,
+  IoTRegistry,
+  shaHash,
+  Step,
+  StepModuleBuilder,
+  withDevUserTag,
+} from '../../.deps.ts';
 import { AzureResolveIoTHubConnectionStringStep } from './AzureResolveIoTHubConnectionStringStep.ts';
 
 import { AzureIoTHubDeviceInput, AzureIoTHubDeviceInputSchema } from './AzureIoTHubDeviceInput.ts';
@@ -11,7 +18,6 @@ import {
   AzureIoTHubDeviceOutput,
   AzureIoTHubDeviceOutputSchema,
 } from './AzureIoTHubDeviceOutput.ts';
-import { applyDevUserTag, withDevUserTag } from '../../devUser.ts';
 
 type TStepBuilder = StepModuleBuilder<
   AzureIoTHubDeviceInput,

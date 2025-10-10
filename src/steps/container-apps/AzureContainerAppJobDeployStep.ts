@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import { Step, StepModuleBuilder, z } from '../../.deps.ts';
+import { Step, StepModuleBuilder, withDevUserTag, z } from '../../.deps.ts';
 import { AzureResolveCredentialStep } from '../resolve-credential/AzureResolveCredentialStep.ts';
 import { AzureResolveCredentialInputSchema } from '../resolve-credential/AzureResolveCredentialInput.ts';
 
@@ -8,7 +8,6 @@ import {
   ContainerAppsAPIClient,
   ManagedEnvironment,
 } from 'npm:@azure/arm-appcontainers@2.2.0';
-import { withDevUserTag } from '../../devUser.ts';
 
 // ---------- Input / Output ----------
 

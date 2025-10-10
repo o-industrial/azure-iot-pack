@@ -32,7 +32,14 @@ export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.34
 export type { Status } from 'jsr:@fathym/common@0.2.274';
 export { z } from 'jsr:@fathym/common@0.2.274/third-party/zod';
 
-export type { EaCWarmQueryAsCode } from 'jsr:@fathym/eac-azure@0.0.115';
+export type { EaCWarmQueryAsCode } from 'jsr:@fathym/eac-azure@0.0.116';
+export {
+  applyDevUserGraphTags,
+  applyDevUserTag,
+  getDevUser,
+  withDevUserGraphTags,
+  withDevUserTag,
+} from 'jsr:@fathym/eac-azure@0.0.116/utils';
 
 export { IotHubClient } from 'npm:@azure/arm-iothub@6.3.0';
 export { Registry as IoTRegistry } from 'npm:azure-iothub@1.16.5';

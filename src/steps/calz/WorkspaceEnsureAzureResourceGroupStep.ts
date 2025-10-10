@@ -1,10 +1,9 @@
 // deno-lint-ignore-file no-explicit-any
-import { shaHash, Step, StepModuleBuilder, z } from '../../.deps.ts';
+import { shaHash, Step, StepModuleBuilder, withDevUserTag, z } from '../../.deps.ts';
 import { AzureResolveCredentialStep } from '../resolve-credential/AzureResolveCredentialStep.ts';
 import { AzureResolveCredentialInputSchema } from '../resolve-credential/AzureResolveCredentialInput.ts';
 
 import { ResourceManagementClient } from 'npm:@azure/arm-resources@6.1.0';
-import { withDevUserTag } from '../../devUser.ts';
 
 // ---------- Input / Output ----------
 

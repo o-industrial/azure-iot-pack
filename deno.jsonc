@@ -46,6 +46,9 @@
     "jsr:@o-industrial/common@0.0.488-hmis/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
     "jsr:@o-industrial/common@0.0.488-hmis/utils/client": "../open-industrial-reference-architecture/src/utils/.exports.client.ts",
 
+    "jsr:@fathym/eac-azure@0.0.116": "../eac-azure/src/azure/.exports.ts",
+    "jsr:@fathym/eac-azure@0.0.116/utils": "../eac-azure/src/utils/.exports.ts",
+    
     "jsr:@o-industrial/oi-core-pack@0.0.34-hmis/connections": "../oi-core-pack/src/capabilities/connection/.exports.ts"
   },
   "compilerOptions": {
