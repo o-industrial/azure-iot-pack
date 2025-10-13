@@ -5,41 +5,41 @@ export {
   type EaCSharedSimulatorDetails,
   type EaCSimulatorAsCode,
   isEaCAzureIoTHubDataConnectionDetails,
-} from 'jsr:@o-industrial/common@0.0.495/eac';
+} from 'jsr:@o-industrial/common@0.0.496/eac';
 export {
   DataConnection,
   DataConnectionModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.495/fluent/connections';
+} from 'jsr:@o-industrial/common@0.0.496/fluent/connections';
 export {
   Simulator,
   SimulatorModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.495/fluent/simulators';
-export { Step, StepModuleBuilder } from 'jsr:@o-industrial/common@0.0.495/fluent/steps';
+} from 'jsr:@o-industrial/common@0.0.496/fluent/simulators';
+export { Step, StepModuleBuilder } from 'jsr:@o-industrial/common@0.0.496/fluent/steps';
 export {
   WarmQuery,
   WarmQueryModuleBuilder,
-} from 'jsr:@o-industrial/common@0.0.495/fluent/warm-queries';
+} from 'jsr:@o-industrial/common@0.0.496/fluent/warm-queries';
 
 export {
   type AzureDataExplorerOutput,
   AzureDataExplorerOutputSchema,
-} from 'jsr:@o-industrial/common@0.0.495/types';
+} from 'jsr:@o-industrial/common@0.0.496/types';
 
-export { shaHash } from 'jsr:@o-industrial/common@0.0.495/utils/client';
+export { shaHash } from 'jsr:@o-industrial/common@0.0.496/utils/client';
 
-export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.42/connections';
+export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.51/connections';
 
 export type { Status } from 'jsr:@fathym/common@0.2.274';
 export { z } from 'jsr:@fathym/common@0.2.274/third-party/zod';
 
-export type { EaCWarmQueryAsCode } from 'jsr:@fathym/eac-azure@0.0.117';
+export type { EaCWarmQueryAsCode } from 'jsr:@fathym/eac-azure@0.0.118';
 export {
   applyDevUserGraphTags,
   applyDevUserTag,
   getDevUser,
   withDevUserGraphTags,
   withDevUserTag,
-} from 'jsr:@fathym/eac-azure@0.0.117/utils';
+} from 'jsr:@fathym/eac-azure@0.0.118/utils';
 
 export { IotHubClient } from 'npm:@azure/arm-iothub@6.3.0';
 export { Registry as IoTRegistry } from 'npm:azure-iothub@1.16.5';
