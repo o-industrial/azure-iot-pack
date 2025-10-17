@@ -49,7 +49,7 @@
     // "jsr:@fathym/eac-azure@0.0.118": "../eac-azure/src/azure/.exports.ts",
     // "jsr:@fathym/eac-azure@0.0.118/utils": "../eac-azure/src/utils/.exports.ts",
     
-    // "jsr:@o-industrial/oi-core-pack@0.0.94/connections": "../oi-core-pack/src/capabilities/connection/.exports.ts"
+    // "jsr:@o-industrial/oi-core-pack@0.0.96/connections": "../oi-core-pack/src/capabilities/connection/.exports.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

@@ -27,7 +27,7 @@ export {
 
 export { shaHash } from 'jsr:@o-industrial/common@0.0.502/utils/client';
 
-export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.94/connections';
+export { DataConnectionStatsSchema } from 'jsr:@o-industrial/oi-core-pack@0.0.96/connections';
 
 export type { Status } from 'jsr:@fathym/common@0.2.274';
 export { z } from 'jsr:@fathym/common@0.2.274/third-party/zod';
