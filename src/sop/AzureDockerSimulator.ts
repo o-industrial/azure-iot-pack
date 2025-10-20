@@ -126,7 +126,6 @@ export function AzureDockerSimulator(
           MessageIntervalMS,
           MessageCountPerDevice,
         } = AsCode.Details ?? {};
-
         const ensured = await Steps.EnsureResGroup({
           WorkspaceLookup: EaC.EnterpriseLookup!,
         });
@@ -134,22 +133,11 @@ export function AzureDockerSimulator(
         const enabled = (AsCode.Metadata as { Enabled?: boolean } | undefined)?.Enabled ??
           true;
 
-        // Compare against the previously deployed value in the current workspace EaC
-        const prevEnabled = (
-          EaC.Simulators?.[SimulatorLookup]?.Metadata as
-            | { Enabled?: boolean }
-            | undefined
-        )?.Enabled;
-
-        const hasChanged = prevEnabled === undefined || prevEnabled !== enabled;
-
         if (!enabled) {
-          if (hasChanged) {
-            await Steps.StopApp({
-              ResourceGroupName: ensured.ResourceGroupName,
-              AppName: ApplicationName,
-            });
-          }
+          await Steps.StopApp({
+            ResourceGroupName: ensured.ResourceGroupName,
+            AppName: ApplicationName,
+          });
           return [];
         }
 
@@ -208,13 +196,10 @@ export function AzureDockerSimulator(
           jobs.map((job) => Steps.DeployJob(job)),
         );
 
-        // Start only if enabled value changed to enabled
-        if (hasChanged) {
-          await Steps.StartApp({
-            ResourceGroupName: ensured.ResourceGroupName,
-            AppName: ApplicationName,
-          });
-        }
+        await Steps.StartApp({
+          ResourceGroupName: ensured.ResourceGroupName,
+          AppName: ApplicationName,
+        });
 
         return outputs;
       },
