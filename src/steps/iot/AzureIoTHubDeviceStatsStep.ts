@@ -141,7 +141,7 @@ export const AzureIoTHubDeviceStatsStep: TStepBuilder = Step(
     // Helper to create a SAS token for device scope
     async function createDeviceSas(
       keyB64: string,
-      ttlSeconds = 3600,
+      ttlSeconds = 604800,
     ): Promise<string> {
       const resourceUri = `${HostName}/devices/${DeviceID}`.toLowerCase();
       const encodedUri = encodeURIComponent(resourceUri);
