@@ -45,6 +45,100 @@ export type AzureContainerAppStopOptions = z.infer<
   typeof AzureContainerAppStopOptionsSchema
 >;
 
+type ReplicaState = 'running' | 'stopped' | 'unknown';
+
+async function resolveContainerAppState(
+  client: ContainerAppsAPIClient,
+  resourceGroupName: string,
+  appName: string,
+): Promise<{ current?: ContainerApp; replicaState: ReplicaState }> {
+  let current: ContainerApp | undefined;
+
+  try {
+    current = await client.containerApps.get(resourceGroupName, appName);
+  } catch {
+    current = undefined;
+  }
+
+  const revisionNames = new Set<string>();
+  const props = (current as any)?.properties ?? {};
+  const addRevision = (value: unknown) => {
+    if (typeof value === 'string' && value.trim()) {
+      revisionNames.add(value.trim());
+    }
+  };
+
+  addRevision(props.latestRevisionName);
+  addRevision(props.latestReadyRevisionName);
+
+  if (Array.isArray(props.activeRevisionNames)) {
+    for (const value of props.activeRevisionNames) addRevision(value);
+  }
+
+  if (revisionNames.size === 0) {
+    try {
+      for await (
+        const revision of client.containerAppsRevisions.listRevisions(
+          resourceGroupName,
+          appName,
+        )
+      ) {
+        const name = typeof revision.name === 'string'
+          ? revision.name
+          : ((revision as any)?.name ?? '');
+        if (!name) continue;
+
+        const revProps = (revision as any)?.properties ?? {};
+        const isActive = revProps.active === true ||
+          (Array.isArray(revProps?.trafficWeight) &&
+            revProps.trafficWeight.some((t: any) => Number(t?.weight ?? 0) > 0)) ||
+          Number(revProps?.replicas ?? revProps?.activeReplicas ?? 0) > 0;
+
+        if (isActive) revisionNames.add(name);
+      }
+    } catch {
+      // Ignore revision listing failures.
+    }
+  }
+
+  let attemptedReplicaLookup = false;
+  let anySuccessfulReplicaLookup = false;
+
+  for (const revisionName of revisionNames) {
+    attemptedReplicaLookup = true;
+
+    try {
+      const response = await client.containerAppsRevisionReplicas.listReplicas(
+        resourceGroupName,
+        appName,
+        revisionName,
+      );
+
+      anySuccessfulReplicaLookup = true;
+
+      const replicas = response?.value ?? [];
+      for (const replica of replicas) {
+        const status = String((replica as any)?.properties?.status ?? '').toLowerCase();
+        if (!status || status === 'running' || status === 'succeeded' || status === 'pending') {
+          return { current, replicaState: 'running' };
+        }
+      }
+    } catch {
+      // Ignore replica lookup failures.
+    }
+  }
+
+  if (anySuccessfulReplicaLookup) {
+    return { current, replicaState: 'stopped' };
+  }
+
+  if (attemptedReplicaLookup) {
+    return { current, replicaState: 'unknown' };
+  }
+
+  return { current, replicaState: 'unknown' };
+}
+
 // ---------- Step ----------
 
 type TStepBuilder = StepModuleBuilder<
@@ -89,20 +183,15 @@ export const AzureContainerAppStopStep: TStepBuilder = Step(
   .Run(async (input, ctx) => {
     const { ResourceGroupName, AppName } = input;
     const { ContainerAppClient } = ctx.Services!;
-
     try {
-      // Short-circuit if already stopped (minReplicas === 0)
-      try {
-        const current = await ContainerAppClient.containerApps.get(
-          ResourceGroupName,
-          AppName,
-        );
-        const min = Number((current?.template as any)?.scale?.minReplicas ?? 0);
-        if (!min || min === 0) {
-          return { AppName, Status: 'Stopped' };
-        }
-      } catch (_) {
-        // If fetching current state fails (e.g., not found), proceed to stop
+      const { current, replicaState } = await resolveContainerAppState(
+        ContainerAppClient,
+        ResourceGroupName,
+        AppName,
+      );
+
+      if (replicaState === 'stopped') {
+        return { AppName, Status: 'Stopped' };
       }
 
       // Preferred: call stop on the container app
@@ -113,18 +202,18 @@ export const AzureContainerAppStopStep: TStepBuilder = Step(
         await ops.beginStop(ResourceGroupName, AppName);
       } else {
         // Fallback: set scale to 0 via update without mutating possibly-undefined nested properties
-        const current = await ContainerAppClient.containerApps.get(
+        const existing = current ?? await ContainerAppClient.containerApps.get(
           ResourceGroupName,
           AppName,
         );
 
         const update: ContainerApp = {
-          location: current.location,
-          tags: applyDevUserTag(current.tags ?? undefined, current.tags ?? undefined, true),
-          managedEnvironmentId: current.managedEnvironmentId,
-          configuration: current.configuration,
+          location: existing.location,
+          tags: applyDevUserTag(existing.tags ?? undefined, existing.tags ?? undefined, true),
+          managedEnvironmentId: existing.managedEnvironmentId,
+          configuration: existing.configuration,
           template: {
-            ...(current.template ?? ({} as any)),
+            ...(existing.template ?? ({} as any)),
             // Ensure scale exists and forces zero replicas
             scale: { minReplicas: 0, maxReplicas: 0 } as any,
           } as any,
