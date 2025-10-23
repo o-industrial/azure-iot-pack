@@ -54,7 +54,7 @@ No existing steps handle provider registration, policy assignment, Key Vault, Lo
 - [x] Implement provider/region readiness step leveraging existing Azure SDK wrappers if available.
 - [x] Implement landing zone resource group + network step with idempotent tagging and naming alignment.
 - [x] Implement security & observability steps (Key Vault seeding, Log Analytics workspace linking, policy/RBAC application).
-- [ ] Add unit tests in `tests/steps/**` for every new step, including failure-path assertions.
+- [x] Add unit tests in `tests/steps/**` for every new step, including failure-path assertions.
 - Deliverable: new or updated modules under `src/steps/landing-zone/**` (or agreed folder) plus tests.
 
 #### Proposed Step Contracts
@@ -91,7 +91,7 @@ Each step wraps `AzureResolveCredentialStep` for token acquisition and exposes s
 - `AzureKeyVaultBootstrapStep`, `AzureLogAnalyticsWorkspaceStep`, `AzureDiagnosticsWiringStep`, and `AzureGovernanceAssignmentStep` added to cover vault creation, workspace provisioning, diagnostics wiring, and policy/RBAC assignments respectively.
 
 ### 3. SOP Composition & Validation
-- [ ] Draft the cloud foundation SOP in `src/sop/CloudFoundation.ts` (or equivalent) wiring steps with clear sequencing and guardrails.
+- [x] Draft the cloud foundation SOP in `src/sop/CloudFoundation.ts` (or equivalent) wiring steps with clear sequencing and guardrails.
 - [ ] Introduce feature flags or configuration to choose between quickstart vs hardened deployment paths.
 - [ ] Run end-to-end dry runs against the dev subscription sandbox; log outcomes and follow-up tasks in this plan.
 - [ ] Capture success/failure telemetry expectations so runtime UIs can surface progress.
@@ -110,3 +110,4 @@ Each step wraps `AzureResolveCredentialStep` for token acquisition and exposes s
 
 ## Status Log
 - 2025-10-?? – Plan created; awaiting inventory of existing steps.
+- 2025-10-20 – Added unit tests covering new landing-zone steps (9 cases) and drafted `CloudFoundationSOP`. `deno task test` passes; `deno task check` still fails on the `**/*.tsx` glob (no matches) until task config is adjusted.
